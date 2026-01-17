@@ -1,0 +1,10 @@
+{
+  "name": "tdd-kata",
+  "version": "0.1.0",
+  "description": "TDD kata practice plugin with strict Red-Green-Refactor cycle enforcement",
+  "author": {
+    "name": "Pietro Di Bello",
+    "email": "pierodibello@gmail.com"
+  },
+  "keywords": ["tdd", "kata", "testing", "test-driven-development", "refactoring"]
+}

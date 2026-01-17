@@ -1,0 +1,32 @@
+# Claude Code settings
+.claude/*.local.md
+
+# Session state files (user-specific)
+.tdd-session.json
+TODO.md
+
+# Node modules
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Rust
+target/
+
+# Java
+.gradle/
+build/
+*.class
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
