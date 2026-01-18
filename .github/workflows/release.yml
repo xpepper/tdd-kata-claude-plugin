@@ -25,7 +25,10 @@ jobs:
           body: |
             ## Installation
 
-            ### Option 1: Download and Extract
+            ### Option 1: Local Usage (Temporary)
+
+            Download and use for specific sessions:
+
             ```bash
             # Download the zip file
             curl -L https://github.com/xpepper/tdd-kata-claude-plugin/releases/download/${{ github.ref_name }}/tdd-kata-plugin.zip -o tdd-kata-plugin.zip
@@ -37,23 +40,30 @@ jobs:
             claude --plugin-dir ./tdd-kata
             ```
 
-            ### Option 2: Clone Repository
+            Or clone the repository:
+
             ```bash
             git clone https://github.com/xpepper/tdd-kata-claude-plugin.git
             claude --plugin-dir ./tdd-kata-claude-plugin
             ```
 
-            ### Option 3: Install Globally
+            ### Option 2: Global Installation (Persistent)
+
+            Install globally so it auto-loads in all sessions:
+
             ```bash
             # Download and extract to Claude plugins directory
             mkdir -p ~/.claude/plugins
             curl -L https://github.com/xpepper/tdd-kata-claude-plugin/releases/download/${{ github.ref_name }}/tdd-kata-plugin.zip -o tdd-kata.zip
             unzip tdd-kata.zip -d ~/.claude/plugins/tdd-kata
+            rm tdd-kata.zip
+
+            # Now just run Claude normally
             claude
             ```
 
             ## What's Changed
-            See [CHANGELOG.md](https://github.com/xpepper/tdd-kata-claude-plugin/blob/main/CHANGELOG.md) for details.
+            See full [README](https://github.com/xpepper/tdd-kata-claude-plugin/blob/main/README.md) for usage details.
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
