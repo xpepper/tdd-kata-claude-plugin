@@ -65,6 +65,7 @@ A test must fail for the right reason:
 # Session Context Files
 
 Read these to understand current state:
+- **Kata description/requirements** provided at the beginning of the TDD session - problem definition, examples, expected behaviors
 - `.tdd-session.json` - phase, constraints, session state
 - `TODO.md` - lessons learned, planned behaviors
 - Recent commits - what's been implemented
