@@ -114,6 +114,10 @@ Document your reasoning:
 
 ## Step 3: Write the Failing Test
 
+**Reference Materials:**
+For comprehensive testing principles and best practices, consult:
+- `skills/tdd-kata-workflow/references/testing/tdd-testing-ground-rules.md` - Testing ground rules for writing clear, maintainable tests
+
 Follow these principles:
 - **One Behavior**: Test exactly one new behavior
 - **Clear Name**: Use descriptive test names (e.g., `test_returns_zero_for_empty_string`)

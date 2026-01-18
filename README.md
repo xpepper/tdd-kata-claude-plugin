@@ -321,6 +321,9 @@ claude --debug
 - **Code Smells (Compact)**: `skills/tdd-kata-workflow/references/refactoring/code_smells_agents.md` - Quick reference for code smell detection with protocol
 - **Code Smells (Extended)**: `skills/tdd-kata-workflow/references/refactoring/code-smells-expanded.md` - Comprehensive catalogue for ambiguous cases and language-specific nuances
 
+### Testing Resources
+- **TDD Testing Ground Rules**: `skills/tdd-kata-workflow/references/testing/tdd-testing-ground-rules.md` - Comprehensive guide for writing clear, maintainable tests that support fast feedback and safe refactoring
+
 ## Development
 
 ### Testing Shell Scripts
