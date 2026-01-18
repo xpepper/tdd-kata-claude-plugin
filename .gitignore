@@ -1,5 +1,6 @@
 # Claude Code settings
 .claude/*.local.md
+.claude/*.local.json
 
 # Session state files (user-specific)
 .tdd-session.json

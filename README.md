@@ -1,6 +1,6 @@
-# TDD Kata Plugin
+# TDD Kata Claude Plugin
 
-Practice Test-Driven Development through code katas with strict Red-Green-Refactor cycle enforcement.
+A Claude Code plugin for practicing Test-Driven Development through code katas with strict Red-Green-Refactor cycle enforcement.
 
 ## Overview
 
