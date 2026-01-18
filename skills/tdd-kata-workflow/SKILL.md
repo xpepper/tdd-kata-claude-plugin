@@ -58,9 +58,8 @@ TDD operates in three distinct phases:
 **Critical**: Each phase has a specific purpose. Never mix phases—don't refactor while making tests pass, don't add features while refactoring.
 
 ## Working with Kata Constraints
-
-Kata constraints (often called "object calisthenics") force specific coding patterns that improve design. Common constraints include:
-
+The user may impose specific coding constraints to force specific coding patterns that improve design.
+A possible example of such constraints are the so-called "object calisthenics" (`references/object-calisthenics.md`), which include:
 - **One level of indentation per method** - Encourages small, focused methods
 - **Don't use the ELSE keyword** - Promotes guard clauses and early returns
 - **Wrap all primitives and Strings** - Creates value objects with domain meaning
@@ -68,9 +67,7 @@ Kata constraints (often called "object calisthenics") force specific coding patt
 - **No classes with more than two instance variables** - Encourages composition
 - **No getters/setters/properties** - Enforces Tell, Don't Ask principle
 
-Apply constraints from the first test. They shape implementation choices and refactoring decisions throughout the kata.
-
-For detailed constraint explanations and patterns, consult `references/object-calisthenics.md`.
+When applying constraints, start from the first test. They shape implementation choices and refactoring decisions throughout the kata.
 
 ## Decision Points in the TDD Cycle
 
