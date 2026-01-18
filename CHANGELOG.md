@@ -5,6 +5,34 @@ All notable changes to the TDD Kata Claude Plugin will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-01-18
+
+### Changed
+- **BREAKING INTERNAL**: Migrate hooks from prompt-based to command-based implementation
+  - PreToolUse hook now uses bash script for deterministic validation (10s timeout vs 45s)
+  - Stop hook now uses bash script for reliable cycle completion checking
+  - Improved performance: 4.5x faster hook execution
+  - Improved reliability: deterministic file I/O instead of LLM reasoning
+  - Backward compatible: no user-facing changes required
+
+### Added
+- Comprehensive test suites for all hook scripts (43 total tests)
+  - `test-tdd-pretool-bash-validator.sh` (18 tests)
+  - `test-tdd-stop-validator.sh` (16 tests)
+  - `test-session-start.sh` (9 tests - from previous release)
+- Code smell detection reference catalogues for refactorer agent
+  - Compact reference: `code_smells_agents.md` with detection protocol
+  - Extended catalogue: `code-smells-expanded.md` for ambiguous cases
+- Development section in README with shell script testing guide
+- Hook testing documentation in `.github/copilot-instructions.md`
+- Git command best practices documentation (`--no-pager` usage)
+
+### Documentation
+- Reference code smell catalogues in refactorer agent instructions
+- Reorganize README "Additional Resources" with subsections
+- Add step-by-step testing procedures for contributors
+- Update contributing guidelines with testing requirements
+
 ## [0.1.2] - 2026-01-18
 
 ### Fixed
@@ -72,6 +100,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Session resume capability
 - Git integration with automatic commits
 
+[0.2.0]: https://github.com/xpepper/tdd-kata-claude-plugin/releases/tag/v0.2.0
 [0.1.2]: https://github.com/xpepper/tdd-kata-claude-plugin/releases/tag/v0.1.2
 [0.1.1]: https://github.com/xpepper/tdd-kata-claude-plugin/releases/tag/v0.1.1
 [0.1.0]: https://github.com/xpepper/tdd-kata-claude-plugin/releases/tag/v0.1.0
