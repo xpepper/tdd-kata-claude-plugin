@@ -33,7 +33,7 @@ This plugin helps you practice TDD by guiding you through kata exercises with th
 
 The plugin will detect existing toolchains and guide you through installation if needed.
 
-## Installation
+## ⚡ Quick Install
 
 ### Option 1: Local Usage (Temporary)
 
@@ -79,7 +79,7 @@ claude
 /help
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
 Try the plugin with the classic FizzBuzz kata:
 
