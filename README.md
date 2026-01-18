@@ -39,19 +39,18 @@ The plugin will detect existing toolchains and guide you through installation if
 
 
 ```bash
-# Clone the repository (replace with actual repository URL)
-git clone https://github.com/yourusername/tdd-kata-plugin.git
-cd tdd-kata-plugin/tdd-kata
+# Clone the repository
+git clone https://github.com/xpepper/tdd-kata-claude-plugin.git
 
 # Run Claude Code with the plugin
-claude --plugin-dir $(pwd)
+claude --plugin-dir ./tdd-kata-claude-plugin
 ```
 
 Or if you have the plugin directory locally:
 
 ```bash
 # Run Claude Code pointing to the plugin directory
-claude --plugin-dir /path/to/tdd-kata
+claude --plugin-dir /path/to/tdd-kata-claude-plugin
 ```
 
 ### Option 2: Global Installation
@@ -59,11 +58,10 @@ claude --plugin-dir /path/to/tdd-kata
 Install the plugin globally so it's available in all your projects:
 
 ```bash
-# Create Claude plugins directory if it doesn't exist
+# Clone and copy to Claude plugins directory
+git clone https://github.com/xpepper/tdd-kata-claude-plugin.git
 mkdir -p ~/.claude/plugins
-
-# Copy the plugin directory
-cp -r /path/to/tdd-kata ~/.claude/plugins/
+cp -r tdd-kata-claude-plugin ~/.claude/plugins/tdd-kata
 
 # Now just run Claude normally - the plugin will auto-load
 claude
@@ -74,9 +72,12 @@ claude
 Install the plugin for a specific project:
 
 ```bash
+# Clone the plugin
+git clone https://github.com/xpepper/tdd-kata-claude-plugin.git
+
 # In your project directory
 mkdir -p .claude-plugin
-cp -r /path/to/tdd-kata .claude-plugin/
+cp -r tdd-kata-claude-plugin .claude-plugin/tdd-kata
 
 # Run Claude in your project
 claude
@@ -126,7 +127,7 @@ Write a program that returns:
 EOF
 
 # 3. Start Claude Code with the plugin
-claude --plugin-dir /path/to/tdd-kata
+claude --plugin-dir /path/to/tdd-kata-claude-plugin
 # (Or just 'claude' if you installed globally)
 
 # 4. In Claude Code, run:

@@ -1,0 +1,57 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create plugin archive
+        run: |
+          zip -r tdd-kata-plugin.zip . -x "*.git*" -x ".github/*"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: tdd-kata-plugin.zip
+          body: |
+            ## Installation
+
+            ### Option 1: Download and Extract
+            ```bash
+            # Download the zip file
+            curl -L https://github.com/xpepper/tdd-kata-claude-plugin/releases/download/${{ github.ref_name }}/tdd-kata-plugin.zip -o tdd-kata-plugin.zip
+
+            # Extract
+            unzip tdd-kata-plugin.zip -d tdd-kata
+
+            # Use the plugin
+            claude --plugin-dir ./tdd-kata
+            ```
+
+            ### Option 2: Clone Repository
+            ```bash
+            git clone https://github.com/xpepper/tdd-kata-claude-plugin.git
+            claude --plugin-dir ./tdd-kata-claude-plugin
+            ```
+
+            ### Option 3: Install Globally
+            ```bash
+            # Download and extract to Claude plugins directory
+            mkdir -p ~/.claude/plugins
+            curl -L https://github.com/xpepper/tdd-kata-claude-plugin/releases/download/${{ github.ref_name }}/tdd-kata-plugin.zip -o tdd-kata.zip
+            unzip tdd-kata.zip -d ~/.claude/plugins/tdd-kata
+            claude
+            ```
+
+            ## What's Changed
+            See [CHANGELOG.md](https://github.com/xpepper/tdd-kata-claude-plugin/blob/main/CHANGELOG.md) for details.
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

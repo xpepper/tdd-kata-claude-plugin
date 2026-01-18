@@ -6,5 +6,11 @@
     "name": "Pietro Di Bello",
     "email": "pierodibello@gmail.com"
   },
-  "keywords": ["tdd", "kata", "testing", "test-driven-development", "refactoring"]
+  "keywords": ["tdd", "kata", "testing", "test-driven-development", "refactoring"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xpepper/tdd-kata-claude-plugin.git"
+  },
+  "homepage": "https://github.com/xpepper/tdd-kata-claude-plugin",
+  "license": "MIT"
 }

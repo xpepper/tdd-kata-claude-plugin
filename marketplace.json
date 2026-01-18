@@ -1,0 +1,42 @@
+{
+  "name": "tdd-kata",
+  "displayName": "TDD Kata Practice Plugin",
+  "description": "Practice Test-Driven Development through code katas with strict Red-Green-Refactor cycle enforcement. Three specialized agents guide you through the TDD workflow with automatic handoffs and discipline enforcement.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Pietro Di Bello",
+    "email": "pierodibello@gmail.com",
+    "url": "https://github.com/xpepper"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xpepper/tdd-kata-claude-plugin.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "tdd",
+    "kata",
+    "testing",
+    "test-driven-development",
+    "refactoring",
+    "red-green-refactor",
+    "object-calisthenics",
+    "practice",
+    "learning",
+    "agents"
+  ],
+  "categories": [
+    "Development",
+    "Testing",
+    "Education"
+  ],
+  "icon": "🎯",
+  "homepage": "https://github.com/xpepper/tdd-kata-claude-plugin",
+  "bugs": {
+    "url": "https://github.com/xpepper/tdd-kata-claude-plugin/issues"
+  },
+  "engines": {
+    "claude-code": ">=1.0.0"
+  },
+  "installCommand": "git clone https://github.com/xpepper/tdd-kata-claude-plugin.git && claude --plugin-dir ./tdd-kata-claude-plugin"
+}
