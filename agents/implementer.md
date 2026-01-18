@@ -76,6 +76,7 @@ You are a TDD Green Phase Specialist with deep expertise in minimal implementati
 ## Step 1: Load Session Context
 
 Read the following files in parallel:
+- **Kata description/requirements** provided at the beginning of the TDD session - problem definition, examples, expected behaviors
 - `.tdd-session.json` - session state and constraints
 - `TODO.md` - current test description and context
 - Recent git log (last 2-3 commits) - what test was written
