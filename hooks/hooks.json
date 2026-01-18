@@ -1,25 +1,13 @@
 {
   "description": "TDD discipline enforcement hooks for kata practice sessions",
   "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash $CLAUDE_PLUGIN_ROOT/hooks/session-start.sh",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "You are validating a Bash command for TDD kata discipline.\n\nCommand being run: $TOOL_INPUT\n\nRules to enforce:\n1. If .tdd-session.json doesn't exist, allow all commands (no active kata session)\n2. If running production code (not test commands): Check if tests exist. Block if no tests found.\n3. If running 'git commit' and phase is 'red' (from .tdd-session.json): Verify last test run shows FAILING tests. Block commit if tests pass or no test output found.\n4. If running 'git commit' and phase is 'green' or 'refactor': Verify last test run shows ALL PASSING tests. Block commit if any tests fail.\n\nTo check:\n- Read .tdd-session.json to get current phase (if file exists)\n- Look for recent test output in transcript or run test command to check status\n- Identify if this is a test command (cargo test, npm test, pytest, etc.) vs production code\n- For commits: verify test status matches phase requirements\n\nIMPORTANT: PreToolUse hooks MUST use hookSpecificOutput wrapper.\n\nReturn EXACTLY this JSON format:\n{\n  \"hookSpecificOutput\": {\n    \"permissionDecision\": \"allow|deny|ask\",\n    \"updatedInput\": null\n  },\n  \"systemMessage\": \"Explanation of decision\"\n}\n\nIf denying:\n- Explain what rule was violated\n- Tell what needs to be fixed\n- Provide actionable next steps",
+            "prompt": "You are validating a Bash command for TDD kata discipline.\n\nCommand being run: $TOOL_INPUT\n\nRules to enforce:\n1. If .tdd-session.json doesn't exist, allow all commands (no active kata session)\n2. If running production code (not test commands): Check if tests exist. Block if no tests found.\n3. If running 'git commit' and phase is 'red' (from .tdd-session.json): Verify last test run shows FAILING tests. Block commit if tests pass or no test output found.\n4. If running 'git commit' and phase is 'green' or 'refactor': Verify last test run shows ALL PASSING tests. Block commit if any tests fail.\n\nTo check:\n- Read .tdd-session.json to get current phase (if file exists)\n- Look for recent test output in transcript or run test command to check status\n- Identify if this is a test command (cargo test, npm test, pytest, etc.) vs production code\n- For commits: verify test status matches phase requirements\n\nReturn EXACTLY this JSON format:\n{\n  \"hookSpecificOutput\": {\n    \"permissionDecision\": \"allow|deny|ask\",\n    \"updatedInput\": null\n  },\n  \"systemMessage\": \"Explanation of decision\"\n}\n\nIf denying:\n- Explain what rule was violated\n- Tell what needs to be fixed\n- Provide actionable next steps",
             "timeout": 45
           }
         ]
@@ -31,7 +19,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Validate kata session completion before stopping.\n\nCheck if there's an active TDD kata session (.tdd-session.json exists).\n\nIf active session exists:\n1. Read .tdd-session.json to check phase\n2. Read TODO.md to check for pending tasks\n3. Check recent commits to see if in middle of RED-GREEN-REFACTOR cycle\n\nBlock stopping if:\n- Phase is 'red' and last commit was a test (incomplete cycle - need GREEN phase)\n- Phase is 'green' and last commit was implementation (incomplete cycle - need REFACTOR phase)\n- TODO.md has current tasks marked in progress\n- Test results show failures (should resolve before stopping)\n\nAllow stopping if:\n- No active session (.tdd-session.json doesn't exist)\n- Phase is 'refactor' and last commit was refactoring (cycle complete)\n- Phase is 'complete' (kata finished)\n- User explicitly completed a full cycle\n\nIMPORTANT: Return JSON with an 'ok' boolean field.\n\nReturn EXACTLY this JSON format:\n{\n  \"ok\": true,\n  \"systemMessage\": \"Optional message when approving\"\n}\n\nOR when blocking:\n{\n  \"ok\": false,\n  \"reason\": \"Explanation of why blocking\",\n  \"systemMessage\": \"Detailed guidance on what to do next\"\n}\n\nIf blocking (ok: false), suggest:\n- What phase to complete next\n- Commands to check status (/kata-status)\n- How to properly complete the cycle",
+            "prompt": "Validate kata session completion before stopping.\n\nCheck if there's an active TDD kata session (.tdd-session.json exists).\n\nIf active session exists:\n1. Read .tdd-session.json to check phase\n2. Read TODO.md to check for pending tasks\n3. Check recent commits to see if in middle of RED-GREEN-REFACTOR cycle\n\nBlock stopping if:\n- Phase is 'red' and last commit was a test (incomplete cycle - need GREEN phase)\n- Phase is 'green' and last commit was implementation (incomplete cycle - need REFACTOR phase)\n- TODO.md has current tasks marked in progress\n- Test results show failures (should resolve before stopping)\n\nAllow stopping if:\n- No active session (.tdd-session.json doesn't exist)\n- Phase is 'refactor' and last commit was refactoring (cycle complete)\n- Phase is 'complete' (kata finished)\n- User explicitly completed a full cycle\n\nReturn EXACTLY this JSON format:\n{\n  \"ok\": true,\n  \"systemMessage\": \"Optional message when approving\"\n}\n\nOR when blocking:\n{\n  \"ok\": false,\n  \"reason\": \"Explanation of why blocking\",\n  \"systemMessage\": \"Detailed guidance on what to do next\"\n}",
             "timeout": 30
           }
         ]
