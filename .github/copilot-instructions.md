@@ -88,6 +88,16 @@ claude plugin validate ~/path/to/tdd-kata
 claude --plugin-dir ~/path/to/tdd-kata --print "list slash commands"
 ```
 
+## Releasing a New Version
+
+1. **Update versions** in `.claude-plugin/plugin.json` and `marketplace.json`
+2. **Update CHANGELOG.md** with new version section and link at bottom
+3. **Commit**: `git commit -m "chore: bump version to X.Y.Z"`
+4. **Tag**: `git tag vX.Y.Z`
+5. **Push**: `git push origin main --tags`
+
+The GitHub Actions workflow ([.github/workflows/release.yml](.github/workflows/release.yml)) automatically creates a release with a zip archive when a `v*` tag is pushed.
+
 ## TDD Styles
 Let the user choose which TDD style to follow.
 
