@@ -57,7 +57,7 @@ Honour all kata constraints:
 # Session Context Files
 
 Read these to understand current state:
-- **Kata requirements** (`README.md` or `KATA.md`) - problem definition, constraints
+- **Kata description/requirements** provided at the beginning of the TDD session - problem definition, examples, expected behaviors
 - `.tdd-session.json` - phase, constraints, session state
 - `TODO.md` - recent changes, noted refactoring opportunities
 - Recent commits (last 2-3) - what was just implemented
