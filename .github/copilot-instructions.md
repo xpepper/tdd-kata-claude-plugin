@@ -67,6 +67,27 @@ When modifying agents or commands:
 - Commands define `allowed-tools` in frontmatter
 - Test changes manually by running `/start-kata` with a sample kata
 
+## Plugin Development & Validation
+
+**Always validate after changes:**
+```bash
+claude plugin validate ~/path/to/tdd-kata
+```
+
+**Common plugin.json pitfalls:**
+- `repository` must be a **string URL**, not `{"type": "git", "url": "..."}` object
+- Run validation before testing - invalid manifests silently prevent plugin loading
+
+**Testing hooks:**
+- Hook scripts with `set -e` will crash on ANY error, breaking plugin load
+- Test [hooks/session-start.sh](hooks/session-start.sh) with: `bash hooks/tests/test-session-start.sh`
+- Hook scripts must handle: invalid JSON input, missing files, corrupted session files
+
+**Testing the plugin:**
+```bash
+claude --plugin-dir ~/path/to/tdd-kata --print "list slash commands"
+```
+
 ## TDD Styles
 Let the user choose which TDD style to follow.
 
