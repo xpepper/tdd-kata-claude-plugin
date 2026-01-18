@@ -7,10 +7,7 @@
     "name": "Pietro Di Bello",
     "url": "https://github.com/xpepper"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/xpepper/tdd-kata-claude-plugin.git"
-  },
+  "repository": "https://github.com/xpepper/tdd-kata-claude-plugin",
   "license": "MIT",
   "keywords": [
     "tdd",
