@@ -35,7 +35,7 @@
     "url": "https://github.com/xpepper/tdd-kata-claude-plugin/issues"
   },
   "engines": {
-    "claude-code": ">=1.0.0"
+    "claude-code": ">=2.1.0"
   },
   "installCommand": "git clone https://github.com/xpepper/tdd-kata-claude-plugin.git && claude --plugin-dir ./tdd-kata-claude-plugin"
 }
