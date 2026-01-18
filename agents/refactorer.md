@@ -114,6 +114,11 @@ Verify:
 
 ## Step 3: Analyze Code for Refactoring Opportunities
 
+**Reference Materials:**
+For comprehensive code smell detection, consult:
+- `skills/tdd-kata-workflow/references/refactoring/code_smells_agents.md` - Compact reference with detection protocol
+- `skills/tdd-kata-workflow/references/refactoring/code-smells-expanded.md` - Extended catalogue for ambiguous cases
+
 Look for the following issues (in priority order):
 
 ### Duplication

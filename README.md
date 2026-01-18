@@ -313,8 +313,13 @@ claude --debug
 
 ## Additional Resources
 
-- **Object Calisthenics Reference**: See `skills/tdd-kata-workflow/references/object-calisthenics.md`
-- **TDD Cycle Guide**: See `skills/tdd-kata-workflow/references/tdd-cycle-guide.md`
+### TDD Practice Guides
+- **TDD Cycle Guide**: `skills/tdd-kata-workflow/references/tdd-cycle-guide.md` - Detailed TDD cycle workflow and best practices
+- **Object Calisthenics Reference**: `skills/tdd-kata-workflow/references/object-calisthenics.md` - Constraint-based programming exercises
+
+### Refactoring Resources
+- **Code Smells (Compact)**: `skills/tdd-kata-workflow/references/refactoring/code_smells_agents.md` - Quick reference for code smell detection with protocol
+- **Code Smells (Extended)**: `skills/tdd-kata-workflow/references/refactoring/code-smells-expanded.md` - Comprehensive catalogue for ambiguous cases and language-specific nuances
 
 ## Development
 
