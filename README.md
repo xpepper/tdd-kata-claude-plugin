@@ -20,20 +20,119 @@ This plugin helps you practice TDD by guiding you through kata exercises with th
 - ✅ Session persistence for resuming kata practice
 - ✅ Conventional commit messages for each phase
 
+## Prerequisites
+
+- **Claude Code CLI** (`claude`) installed and configured
+- **Git** for version control (automatically initialized by the plugin)
+- **Language toolchain** for your chosen language, for example:
+  - Rust: `cargo` (install from [rustup.rs](https://rustup.rs))
+  - TypeScript/JavaScript: `node` and `npm`
+  - Python: `python3` and `pip`
+  - Java: `java` and `gradle` or `maven`
+  - Go: `go` toolchain
+
+The plugin will detect existing toolchains and guide you through installation if needed.
+
 ## Installation
 
-### From Local Directory
+### Option 1: Clone from Repository
+
 
 ```bash
-# Run Claude Code with this plugin enabled
-cc --plugin-dir /Users/pietrodibello/Documents/workspace/kata/claude-tdd-plugin/tdd-kata
+# Clone the repository (replace with actual repository URL)
+git clone https://github.com/yourusername/tdd-kata-plugin.git
+cd tdd-kata-plugin/tdd-kata
+
+# Run Claude Code with the plugin
+claude --plugin-dir $(pwd)
 ```
 
-### Global Installation
+Or if you have the plugin directory locally:
 
 ```bash
-# Copy to your Claude plugins directory
-cp -r tdd-kata ~/.claude/plugins/
+# Run Claude Code pointing to the plugin directory
+claude --plugin-dir /path/to/tdd-kata
+```
+
+### Option 2: Global Installation
+
+Install the plugin globally so it's available in all your projects:
+
+```bash
+# Create Claude plugins directory if it doesn't exist
+mkdir -p ~/.claude/plugins
+
+# Copy the plugin directory
+cp -r /path/to/tdd-kata ~/.claude/plugins/
+
+# Now just run Claude normally - the plugin will auto-load
+claude
+```
+
+### Option 3: Project-Specific Installation
+
+Install the plugin for a specific project:
+
+```bash
+# In your project directory
+mkdir -p .claude-plugin
+cp -r /path/to/tdd-kata .claude-plugin/
+
+# Run Claude in your project
+claude
+```
+
+### Verify Installation
+
+Check that the plugin loaded successfully:
+
+```bash
+# Start Claude Code
+claude
+
+# Check available commands (should see start-kata, kata-status, etc.)
+/help
+```
+
+## Quick Start
+
+Try the plugin with the classic FizzBuzz kata:
+
+```bash
+# 1. Create a practice directory
+mkdir -p ~/katas/fizzbuzz
+cd ~/katas/fizzbuzz
+
+# 2. Create a kata description file
+cat > kata.md <<'EOF'
+# FizzBuzz Kata
+
+## Description
+Write a program that returns:
+- "Fizz" for multiples of 3
+- "Buzz" for multiples of 5
+- "FizzBuzz" for multiples of both
+- The number as a string otherwise
+
+## Examples
+- Input: 1 → Output: "1"
+- Input: 3 → Output: "Fizz"
+- Input: 5 → Output: "Buzz"
+- Input: 15 → Output: "FizzBuzz"
+
+## Constraints
+- One level of indentation per method
+- Don't use the ELSE keyword
+EOF
+
+# 3. Start Claude Code with the plugin
+claude --plugin-dir /path/to/tdd-kata
+# (Or just 'claude' if you installed globally)
+
+# 4. In Claude Code, run:
+/start-kata kata.md
+
+# 5. Follow the agent guidance through RED-GREEN-REFACTOR cycles!
 ```
 
 ## Usage
@@ -145,17 +244,6 @@ The plugin creates two files in your kata workspace:
 
 These files persist across Claude Code sessions, allowing you to resume kata practice.
 
-## Supported Languages
-
-Language-agnostic design supports any language with a test framework. Automated setup includes:
-
-- **Rust**: cargo + cargo test
-- **Java**: gradle/maven + JUnit
-- **TypeScript/JavaScript**: npm + Jest
-- **Python**: pip + pytest
-- **Go**: go test
-- And more...
-
 ## Hooks
 
 The plugin enforces TDD discipline through hooks:
@@ -199,10 +287,66 @@ Each agent contributes insights to the shared TODO.md lessons learned section:
 - Constraint application insights
 - Mistakes and how they were corrected
 
+## Troubleshooting
+
+### Plugin not loading?
+
+```bash
+# Verify plugin directory structure
+ls -la /path/to/tdd-kata/.claude-plugin/
+
+# Should see plugin.json file
+
+# Run with debug mode
+claude --debug --plugin-dir /path/to/tdd-kata
+```
+
+### Commands not appearing in /help?
+
+- Restart Claude Code after installing the plugin
+- Check that the plugin directory path is correct
+- Ensure `.claude-plugin/plugin.json` exists
+
+### Hooks not working?
+
+- Hooks load at session start - restart Claude Code after any hook changes
+- Use `claude --debug` to see hook execution logs
+- Check `hooks/hooks.json` for JSON syntax errors
+
+### Session not resuming?
+
+- Check for `.tdd-session.json` file in your kata directory
+- Verify the file contains valid JSON
+- SessionStart hook should detect and display session info on startup
+
+## Additional Resources
+
+- **Object Calisthenics Reference**: See `skills/tdd-kata-workflow/references/object-calisthenics.md`
+- **TDD Cycle Guide**: See `skills/tdd-kata-workflow/references/tdd-cycle-guide.md`
+
 ## License
 
-MIT
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Contributing
 
-Contributions welcome! Please follow TDD practices when contributing to this plugin. 😊
+Contributions are welcome! To contribute:
+
+1. **Practice TDD**: Follow the RED-GREEN-REFACTOR cycle when contributing
+2. **Test your changes**: Use the plugin itself to develop new features
+3. **Document**: Update README and relevant documentation
+4. **Follow conventions**: Use conventional commits and plugin best practices
+
+Please open an issue first to discuss significant changes.
+
+## Support
+
+If you encounter issues or have questions:
+
+1. Check the [Troubleshooting](#troubleshooting) section above
+2. Review the plugin documentation in the `skills/` directory
+3. Open an issue on GitHub (if repository is available)
+
+## Acknowledgments
+
+Built with Claude Code plugin development best practices and inspired by the TDD community's commitment to disciplined software craftsmanship.
