@@ -83,6 +83,10 @@ claude plugin validate ~/path/to/tdd-kata
 - Test [hooks/session-start.sh](hooks/session-start.sh) with: `bash hooks/tests/test-session-start.sh`
 - Hook scripts must handle: invalid JSON input, missing files, corrupted session files
 
+**Running git commands programmatically:**
+- Always use `git --no-pager` to avoid getting stuck in alternate buffer (pager like `less`)
+- Example: `git --no-pager log --oneline -5` or `git --no-pager tag -l`
+
 **Testing the plugin:**
 ```bash
 claude --plugin-dir ~/path/to/tdd-kata --print "list slash commands"
