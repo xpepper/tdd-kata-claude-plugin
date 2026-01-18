@@ -35,8 +35,9 @@ The plugin will detect existing toolchains and guide you through installation if
 
 ## Installation
 
-### Option 1: Clone from Repository
+### Option 1: Local Usage (Temporary)
 
+Use the plugin for a specific session without installing it globally:
 
 ```bash
 # Clone the repository
@@ -46,16 +47,15 @@ git clone https://github.com/xpepper/tdd-kata-claude-plugin.git
 claude --plugin-dir ./tdd-kata-claude-plugin
 ```
 
-Or if you have the plugin directory locally:
+This works from any directory by pointing to the plugin location:
 
 ```bash
-# Run Claude Code pointing to the plugin directory
 claude --plugin-dir /path/to/tdd-kata-claude-plugin
 ```
 
-### Option 2: Global Installation
+### Option 2: Global Installation (Persistent)
 
-Install the plugin globally so it's available in all your projects:
+Install the plugin globally so it's automatically available in all sessions:
 
 ```bash
 # Clone and copy to Claude plugins directory
@@ -63,23 +63,7 @@ git clone https://github.com/xpepper/tdd-kata-claude-plugin.git
 mkdir -p ~/.claude/plugins
 cp -r tdd-kata-claude-plugin ~/.claude/plugins/tdd-kata
 
-# Now just run Claude normally - the plugin will auto-load
-claude
-```
-
-### Option 3: Project-Specific Installation
-
-Install the plugin for a specific project:
-
-```bash
-# Clone the plugin
-git clone https://github.com/xpepper/tdd-kata-claude-plugin.git
-
-# In your project directory
-mkdir -p .claude-plugin
-cp -r tdd-kata-claude-plugin .claude-plugin/tdd-kata
-
-# Run Claude in your project
+# Now just run Claude normally - the plugin auto-loads
 claude
 ```
 
@@ -127,8 +111,11 @@ Write a program that returns:
 EOF
 
 # 3. Start Claude Code with the plugin
+# Local usage (Option 1):
 claude --plugin-dir /path/to/tdd-kata-claude-plugin
-# (Or just 'claude' if you installed globally)
+
+# Global installation (Option 2):
+claude
 
 # 4. In Claude Code, run:
 /start-kata kata.md
@@ -294,19 +281,23 @@ Each agent contributes insights to the shared TODO.md lessons learned section:
 
 ```bash
 # Verify plugin directory structure
-ls -la /path/to/tdd-kata/.claude-plugin/
+ls -la /path/to/tdd-kata-claude-plugin/
 
 # Should see plugin.json file
 
-# Run with debug mode
-claude --debug --plugin-dir /path/to/tdd-kata
+# Run with debug mode (local usage)
+claude --debug --plugin-dir /path/to/tdd-kata-claude-plugin
+
+# Or for global installation
+claude --debug
 ```
 
 ### Commands not appearing in /help?
 
 - Restart Claude Code after installing the plugin
-- Check that the plugin directory path is correct
-- Ensure `.claude-plugin/plugin.json` exists
+- For local usage: Check that the `--plugin-dir` path is correct
+- For global installation: Verify the plugin is in `~/.claude/plugins/tdd-kata/`
+- Ensure `plugin.json` exists in the plugin directory
 
 ### Hooks not working?
 
