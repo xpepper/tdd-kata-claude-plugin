@@ -316,6 +316,74 @@ claude --debug
 - **Object Calisthenics Reference**: See `skills/tdd-kata-workflow/references/object-calisthenics.md`
 - **TDD Cycle Guide**: See `skills/tdd-kata-workflow/references/tdd-cycle-guide.md`
 
+## Development
+
+### Testing Shell Scripts
+
+The plugin uses bash scripts for hook validation. All shell scripts have comprehensive test suites that must pass before committing changes.
+
+**Running all hook tests:**
+
+```bash
+# Test all hook scripts
+bash hooks/tests/test-session-start.sh
+bash hooks/tests/test-tdd-pretool-bash-validator.sh
+bash hooks/tests/test-tdd-stop-validator.sh
+```
+
+**Quick test all:**
+
+```bash
+# Run all tests in sequence
+for test in hooks/tests/test-*.sh; do
+    echo "Running $test..."
+    bash "$test" || exit 1
+done
+echo "All tests passed!"
+```
+
+**Test output:**
+
+Each test suite reports:
+- ✓ Passed tests in green
+- ✗ Failed tests in red with detailed error info
+- Total pass/fail count
+
+**Writing new tests:**
+
+When adding or modifying shell scripts in `hooks/`:
+
+1. Add test cases to the corresponding test file in `hooks/tests/`
+2. Follow the existing test pattern (see `test-session-start.sh` as reference)
+3. Test both success and failure cases
+4. Test edge cases: empty input, malformed JSON, missing files
+5. Ensure all tests pass before committing
+
+**Test structure:**
+
+```bash
+# Test pattern
+run_test "test description" \
+    '{"input": "json"}' \
+    expected_exit_code \
+    "expected_output_pattern"
+```
+
+### Validating Plugin Changes
+
+**Always validate after making changes:**
+
+```bash
+# Validate plugin structure and configuration
+claude plugin validate .
+
+# Test plugin loads correctly
+claude --plugin-dir . --print "list slash commands"
+
+# Test with debug mode to see hook execution
+claude --debug --plugin-dir .
+```
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
@@ -325,7 +393,10 @@ MIT License - see [LICENSE](LICENSE) file for details.
 Contributions are welcome! To contribute:
 
 1. **Practice TDD**: Follow the RED-GREEN-REFACTOR cycle when contributing
-2. **Test your changes**: Use the plugin itself to develop new features
+2. **Test your changes**:
+   - Run all shell script tests (see [Development](#development) section)
+   - Validate plugin changes with `claude plugin validate .`
+   - Test manually with the plugin using sample katas
 3. **Document**: Update README and relevant documentation
 4. **Follow conventions**: Use conventional commits and plugin best practices
 

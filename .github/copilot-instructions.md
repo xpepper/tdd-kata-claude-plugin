@@ -78,10 +78,28 @@ claude plugin validate ~/path/to/tdd-kata
 - `repository` must be a **string URL**, not `{"type": "git", "url": "..."}` object
 - Run validation before testing - invalid manifests silently prevent plugin loading
 
-**Testing hooks:**
-- Hook scripts with `set -e` will crash on ANY error, breaking plugin load
-- Test [hooks/session-start.sh](hooks/session-start.sh) with: `bash hooks/tests/test-session-start.sh`
-- Hook scripts must handle: invalid JSON input, missing files, corrupted session files
+**Testing hook scripts:**
+
+All hook shell scripts have comprehensive test suites in `hooks/tests/`:
+
+```bash
+# Test all hook scripts
+bash hooks/tests/test-session-start.sh                    # SessionStart hook (9 tests)
+bash hooks/tests/test-tdd-pretool-bash-validator.sh       # PreToolUse/Bash hook (18 tests)
+bash hooks/tests/test-tdd-stop-validator.sh               # Stop hook (16 tests)
+
+# Quick test all (43 total tests)
+for test in hooks/tests/test-*.sh; do bash "$test" || exit 1; done
+```
+
+**When modifying hooks:**
+1. Update the corresponding hook script in `hooks/`
+2. Add test cases to the matching test file in `hooks/tests/`
+3. Run the test suite to verify all tests pass
+4. Test both success and failure scenarios
+5. Handle edge cases: invalid JSON input, missing files, corrupted session files
+
+**Important:** Hook scripts with `set -e` will crash on ANY error, breaking plugin load. Always use `set -euo pipefail` and handle errors gracefully with `|| true` where appropriate.
 
 **Running git commands programmatically:**
 - Always use `git --no-pager` to avoid getting stuck in alternate buffer (pager like `less`)
