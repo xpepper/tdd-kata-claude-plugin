@@ -6,9 +6,9 @@ A Claude Code plugin for practicing Test-Driven Development through code katas w
 
 This plugin helps you practice TDD by guiding you through kata exercises with three specialized agents that enforce proper TDD discipline:
 
-- **Tester Agent (RED)**: Writes failing tests for the next behavior
-- **Implementer Agent (GREEN)**: Writes minimal code to pass the test
-- **Refactorer Agent (REFACTOR)**: Improves code structure while keeping tests green
+- **🔴 Tester Agent (RED)** - Writes failing tests for the next behavior
+- **🟢 Implementer Agent (GREEN)** - Writes minimal code to pass the test
+- **🔵 Refactorer Agent (REFACTOR)** - Improves code structure while keeping tests green
 
 ## Features
 
