@@ -2,7 +2,7 @@
   "name": "tdd-kata",
   "displayName": "TDD Kata Practice Plugin",
   "description": "Practice Test-Driven Development through code katas with strict Red-Green-Refactor cycle enforcement. Three specialized agents guide you through the TDD workflow with automatic handoffs and discipline enforcement.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "Pietro Di Bello",
     "url": "https://github.com/xpepper"
