@@ -5,6 +5,40 @@ All notable changes to the TDD Kata Claude Plugin will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-01-19
+
+### Fixed
+- Add support for `awaiting_decision` phase throughout plugin
+  - Kata now properly pauses after each REFACTOR cycle for user to decide whether to continue or complete
+  - `/kata-status` now detects `awaiting_decision` phase and offers to continue or complete
+  - Hook validators now recognize `awaiting_decision` as valid phase
+  - Added test coverage for `awaiting_decision` in both PreToolUse and Stop hooks (45 total tests, was 43)
+
+### Added
+- TDD Testing Ground Rules documentation
+  - Comprehensive guidelines for both agents and humans
+  - Covers test independence, minimal implementation, refactoring discipline, and more
+  - Referenced in tester agent instructions and README
+- BACKLOG.md for tracking improvement ideas
+  - Structured backlog with priority levels (🔴 High, 🟡 Medium, 🟢 Low)
+  - Categories: Features, Enhancements, Bug Fixes, Documentation, Technical Debt
+  - Six initial items captured:
+    - **YOLO Mode**: Continuous TDD flow without user intervention
+    - **Kata Description Persistence**: Store and reference full kata description in session
+    - **Kata Library Integration**: Browse and start katas from built-in library
+    - **TDD Style Selector**: Choose Classic/Chicago/Outside-In/TPP approaches
+    - **Constraint Library & Presets**: Predefined constraint sets beyond Object Calisthenics
+    - **Multi-Paradigm Support**: Better functional programming and paradigm-specific guidance
+
+### Changed
+- Enhanced all agent documentation with clearer responsibilities and processes:
+  - **Tester agent**: Emphasized learning opportunities in RED phase, refined TDD principles
+  - **Implementer agent**: Streamlined guidelines for minimal implementation focus
+  - **Refactorer agent**: Improved clarity on process adherence and kata requirements
+- Added kata description/requirements to session context files
+- Clarified how kata constraints impact implementation choices
+- Updated priority levels for several backlog items based on strategic importance
+
 ## [0.2.0] - 2026-01-18
 
 ### Changed
@@ -100,6 +134,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Session resume capability
 - Git integration with automatic commits
 
+[0.3.0]: https://github.com/xpepper/tdd-kata-claude-plugin/releases/tag/v0.3.0
 [0.2.0]: https://github.com/xpepper/tdd-kata-claude-plugin/releases/tag/v0.2.0
 [0.1.2]: https://github.com/xpepper/tdd-kata-claude-plugin/releases/tag/v0.1.2
 [0.1.1]: https://github.com/xpepper/tdd-kata-claude-plugin/releases/tag/v0.1.1
