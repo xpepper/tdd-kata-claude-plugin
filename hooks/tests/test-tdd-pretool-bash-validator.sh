@@ -199,6 +199,17 @@ EOF
     fi
 }
 
+# Test: AWAITING_DECISION phase - allow commit with helpful message
+test_awaiting_decision_phase() {
+    cat > "$TEST_DIR/.tdd-session.json" << 'EOF'
+{"phase": "awaiting_decision", "kata": {"name": "FizzBuzz"}}
+EOF
+
+    run_test "AWAITING_DECISION phase: commit allowed with guidance" \
+        "{\"cwd\": \"$TEST_DIR\", \"tool_input\": {\"command\": \"git commit -m 'test'\"}}" \
+        0 "decision point.*kata-status"
+}
+
 # Test: Unknown phase - allow with warning
 test_unknown_phase() {
     cat > "$TEST_DIR/.tdd-session.json" << 'EOF'
@@ -259,6 +270,7 @@ main() {
     test_green_phase_commit_blocked
     test_refactor_phase_commit_blocked
     test_red_phase_build_warning
+    test_awaiting_decision_phase
     test_unknown_phase
     echo ""
 

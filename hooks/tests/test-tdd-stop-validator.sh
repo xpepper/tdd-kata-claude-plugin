@@ -235,6 +235,19 @@ EOF
     cleanup
 }
 
+# Test: AWAITING_DECISION phase - approve with guidance
+test_awaiting_decision_phase() {
+    setup
+    cat > "$TEST_DIR/.tdd-session.json" << 'EOF'
+{"phase": "awaiting_decision", "kata": {"name": "FizzBuzz"}}
+EOF
+
+    run_test "AWAITING_DECISION phase: approve with guidance" \
+        "{\"cwd\": \"$TEST_DIR\"}" \
+        0 "decision point.*kata-status"
+    cleanup
+}
+
 # Test: COMPLETE phase - always approve
 test_complete_phase() {
     setup
@@ -312,6 +325,7 @@ main() {
     echo ""
 
     echo "Special cases:"
+    test_awaiting_decision_phase
     test_complete_phase
     test_unknown_phase
     test_non_git_directory

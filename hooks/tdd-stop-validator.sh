@@ -147,6 +147,14 @@ Commands:
             approve_stop "💡 Tip: You're in REFACTOR phase (code quality). When you return, start the next RED-GREEN-REFACTOR cycle with a new test."
         fi
         ;;
+    awaiting_decision)
+        # In AWAITING_DECISION phase - this is a valid stopping point
+        # User has completed a cycle and can decide later whether to continue
+        approve_stop "🤔 You're at a decision point after completing a TDD cycle.
+
+When you return:
+- Run /kata-status to decide whether to continue or complete the kata"
+        ;;
     complete)
         # Kata is complete, always allow stopping
         approve_stop "✅ Kata '$kata_name' is complete. Great work on practicing TDD!"

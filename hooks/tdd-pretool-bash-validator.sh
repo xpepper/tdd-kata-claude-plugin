@@ -116,6 +116,13 @@ Next steps:
 - If tests pass, commit the refactored code
 - After committing, move to RED phase for next test with /kata-status"
             ;;
+        awaiting_decision)
+            # In AWAITING_DECISION phase, user can commit or prepare before deciding
+            allow_with_message "🤔 You are at a decision point after completing a TDD cycle.
+
+This commit is allowed. When ready:
+- Run /kata-status to continue with next cycle or complete kata"
+            ;;
         *)
             # Unknown phase, allow but warn
             allow_with_message "⚠️ Warning: TDD session has unknown phase '$phase'. Allowing commit but verify your TDD cycle is correct."

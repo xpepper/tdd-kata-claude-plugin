@@ -1,8 +1,8 @@
 ---
 name: kata-status
-description: Display current TDD kata session status including phase, TODO list, recent commits, and lessons learned
+description: Display current TDD kata session status including phase, TODO list, recent commits, and lessons learned. If phase is awaiting_decision, prompts user and resumes workflow.
 argument-hint: ""
-allowed-tools: ["Read", "Bash"]
+allowed-tools: ["Read", "Bash", "Write", "AskUserQuestion", "Task"]
 ---
 
 # Kata Status Command
@@ -24,7 +24,7 @@ Read `.tdd-session.json` to verify an active session exists.
 Parse `.tdd-session.json`:
 ```json
 {
-  "phase": "red|green|refactor|complete",
+  "phase": "red|green|refactor|awaiting_decision|complete",
   "language": "...",
   "toolchain": {...},
   "constraints": [...],
@@ -150,6 +150,32 @@ Next Steps:
   • Document why code is clean if no changes needed
 ```
 
+**If phase is "awaiting_decision"**:
+```
+Next Steps:
+  • You've completed a TDD cycle (RED-GREEN-REFACTOR)
+  • Decide: Continue with next test, or complete kata?
+
+  To continue:
+    • User should indicate they want to continue
+    • Command will update phase to 'red'
+    • Tester agent will launch for next failing test
+
+  To complete:
+    • User should indicate kata is done
+    • Command will update phase to 'complete'
+    • Session will be marked as finished
+```
+
+After displaying status, if phase is "awaiting_decision":
+1. Ask user: "Continue with next cycle or complete kata? (continue/complete)"
+2. If "continue":
+   - Update `.tdd-session.json` phase to 'red'
+   - Launch tester agent with Task tool
+3. If "complete":
+   - Update `.tdd-session.json` phase to 'complete'
+   - Display completion message
+
 **If phase is "complete"**:
 ```
 Next Steps:
@@ -175,6 +201,7 @@ Display current phase with visual indicator:
 - 🔴 RED: Write failing test
 - 🟢 GREEN: Make test pass
 - 🔵 REFACTOR: Improve structure
+- 🤔 AWAITING_DECISION: Decide to continue or complete
 - ✅ COMPLETE: Kata finished
 
 ### Test Status Health
@@ -236,7 +263,8 @@ Analyze commit pattern for TDD discipline:
 
 ## Important Notes
 
-- **Read-only**: This command only displays information, never modifies files
+- **Mostly read-only**: This command displays information without modifying files, EXCEPT when phase is "awaiting_decision"
+- **Resumes workflow**: When phase is "awaiting_decision", prompts user and either launches tester agent (continue) or marks kata complete
 - **Always available**: Can be run at any point during kata session
 - **Quick reference**: Helps user understand current state without reading multiple files
 - **Agent context**: Agents can use this to understand session state
