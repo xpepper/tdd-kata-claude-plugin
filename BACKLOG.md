@@ -11,10 +11,10 @@ This file tracks potential improvements, feature requests, and enhancement ideas
 
 ## Features
 
-### 🟡 YOLO Mode - Continuous TDD Flow
+### 🔴 YOLO Mode - Continuous TDD Flow
 
 **Status:** Proposed
-**Priority:** Medium
+**Priority:** High
 **Category:** Feature
 
 **Description:**
@@ -56,10 +56,10 @@ Add a "YOLO mode" where the TDD workflow continues automatically through multipl
 
 ---
 
-### 🔴 Kata Library Integration
+### 🟡 Kata Library Integration
 
 **Status:** Proposed
-**Priority:** High
+**Priority:** Medium
 **Category:** Feature
 
 **Description:**
@@ -313,10 +313,10 @@ Ensure all agents have access to and consider the original kata description thro
 
 ---
 
-### 🟡 Constraint Library & Presets
+### 🟢 Constraint Library & Presets
 
 **Status:** Proposed
-**Priority:** Medium
+**Priority:** Low
 **Category:** Enhancement
 
 **Description:**
@@ -423,10 +423,10 @@ Expand beyond Object Calisthenics to include a library of predefined constraint 
 
 ---
 
-### 🔴 Multi-Paradigm & Language Support Enhancement
+### 🟡 Multi-Paradigm & Language Support Enhancement
 
 **Status:** Proposed
-**Priority:** High
+**Priority:** Medium
 **Category:** Enhancement
 
 **Description:**
